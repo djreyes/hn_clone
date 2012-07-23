@@ -7,6 +7,9 @@ class LinksController < ApplicationController
   end
 
   def create
+    @link = Link.new(params[:link])
+    @link.save
+    redirect_to root_path
   end
 
   def destroy
