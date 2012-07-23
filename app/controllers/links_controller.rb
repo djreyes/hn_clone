@@ -1,5 +1,5 @@
 class LinksController < ApplicationController
-    before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:index]
 
   def show
     # test
@@ -18,7 +18,7 @@ class LinksController < ApplicationController
   end
 
   def index
-    @links = Link.scoped.page(params[:page]).per(2)
+    @links = Link.scoped.page(params[:page]).per(20)
   end
 
   def new
