@@ -9,8 +9,7 @@ class LinksController < ApplicationController
   end
 
   def create
-    @link = Link.new(params[:link])
-    @link.save
+    current_user.links.create(params[:link])
     redirect_to root_path
   end
 
