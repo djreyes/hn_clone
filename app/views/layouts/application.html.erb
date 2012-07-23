@@ -23,4 +23,7 @@
 
 <%= link_to "Submit a new link", new_link_path %>
 </body>
+
+<%= debug(params) if Rails.env.development? %>
+
 </html>

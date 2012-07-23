@@ -6,6 +6,7 @@ class LinksController < ApplicationController
   end
 
   def edit
+    @link = Link.find(params[:id])
   end
 
   def create
@@ -14,6 +15,13 @@ class LinksController < ApplicationController
   end
 
   def destroy
+  end
+
+  def update
+    @link = Link.find(params[:id])
+    @link = params[:id]
+    @link.save
+    redirect_to root_path
   end
 
   def index

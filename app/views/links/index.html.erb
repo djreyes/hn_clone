@@ -5,6 +5,7 @@
   <h3><%= link_to link.title, link.url%></h3>
   <ul>
     <li><a href="<%=link.url%>"><%=link.url%></a>
+    <li> <%= link_to "edit", edit_link_path(link) %>
     <li>Author: <%= link.user_id %>
   </ul>
 
