@@ -1,0 +1,11 @@
+<h1>Here are the Links</h1>
+
+<% @links.each do |link|%>
+
+  <h3><%= link_to link.title, link.url%></h3>
+  <ul>
+    <li><a href="<%=link.url%>"><%=link.url%></a>
+    <li>Author: <%=link.author_id%>
+  </ul>
+
+<%end%>

@@ -1,0 +1,14 @@
+<div class="hero-unit"><h1>Submit new link</h1></div>
+
+<%= form_for(@link) do |link|%>
+
+  <%= link.label :title, "Enter Title below"%>
+  <%= link.text_field :title%>
+
+  <%= link.label :url, "Enter URL below"%>
+  <%= link.text_field :url %>
+
+  <br>
+  <%= link.submit "Submit link" %>
+
+<% end%>

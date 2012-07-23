@@ -13,9 +13,10 @@ class LinksController < ApplicationController
   end
 
   def index
+    @links = Link.all
   end
 
   def new
-    # test
+    @link = Link.new
   end
 end
