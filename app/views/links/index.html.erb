@@ -3,6 +3,7 @@
 <table class="table">
 <thead>
   <tr>
+    <th>Vote</th>
     <th>Title</th>
     <th>URL</th>
     <th>Author</th>
@@ -13,6 +14,10 @@
 <% @links.each do |link|%>
 <tbody>
   <tr>
+    <td>
+       <%= pluralize link.reputation_value_for(:votes).to_i, "vote" %>
+    <%= link_to "up", votes_path(:id => link.id, type: "up"), method: "post" %>
+      | <%= link_to "down", votes_path(:id => link.id, type: "down"), method: "post" %></td>
     <td><%= link_to link.title, link.url %></td>
     <td><%= link_to link.url, link.url %></a></td>
     <td>Author: <%= link.user_id %></td>
