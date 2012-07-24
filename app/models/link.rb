@@ -6,4 +6,6 @@ class Link < ActiveRecord::Base
   belongs_to :user
 
   has_reputation :votes, source: :user, aggregated_by: :sum
+  
+  has_many :comments, :as => :commentable
 end

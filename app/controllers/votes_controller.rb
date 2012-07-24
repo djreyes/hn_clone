@@ -5,7 +5,9 @@ class VotesController < ApplicationController
   def create
     value = params[:type] == "up" ? 1 : -1
     @link = Link.find(params[:id])
-    if @link.user_id == current_user.id
+    if current_user == nil
+      redirect_to new_user_session_path
+    elsif @link.user_id == current_user.id
       flash[:error] = "You can't vote on your own links!"
       redirect_to root_path
     else

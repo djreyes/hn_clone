@@ -1,24 +1,11 @@
 HnClone::Application.routes.draw do
+  root :to => 'links#index'
 
-  get "comments/index"
-
-  get "comments/show"
-
-  get "comments/update"
-
-  get "comments/create"
-
-  get "comments/edit"
-
-  get "comments/destroy"
-
-  get "comments/new"
+  resources :comments
 
   resources :votes
 
   devise_for :users
-
-  root :to => 'links#index'
 
   resources :links
   # The priority is based upon order of creation:

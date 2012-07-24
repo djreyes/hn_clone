@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
 
   has_reputation :votes, source: {reputation: :votes, of: :haikus}, aggregated_by: :sum
 
-  def voted_for?(haiku)
-    evaluations.where(target_type: haiku.class, target_id: haiku.id).present?
-  end
+  # def voted_for?(link)
+  #   evaluations.where(target_type: link.class, target_id: link.id).present?
+  # end
 end
