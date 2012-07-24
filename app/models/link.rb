@@ -4,4 +4,6 @@ class Link < ActiveRecord::Base
   validates :url, :uniqueness => true
 
   belongs_to :user
+
+  has_reputation :votes, source: :user, aggregated_by: :sum
 end
