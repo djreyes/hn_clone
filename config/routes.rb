@@ -1,5 +1,19 @@
 HnClone::Application.routes.draw do
 
+  get "comments/index"
+
+  get "comments/show"
+
+  get "comments/update"
+
+  get "comments/create"
+
+  get "comments/edit"
+
+  get "comments/destroy"
+
+  get "comments/new"
+
   resources :votes
 
   devise_for :users
