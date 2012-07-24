@@ -19,7 +19,8 @@ class LinksController < ApplicationController
 
   def update
     @link = Link.find(params[:id])
-    @link = params[:id]
+    @link.title = params[:link][:title]
+    @link.url = params[:link][:url]
     @link.save
     redirect_to root_path
   end
