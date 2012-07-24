@@ -17,7 +17,16 @@
   </div>
 
   <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <!-- <p class="alert"><%= alert %></p> -->
+
+  <div id ="error_explanation">
+    <% if flash[:message] %>
+      <div class="alert alert-success"><%= flash[:message] %></div>
+    <% end %>
+    <% if flash[:error] %>
+      <div class="alert alert-error"><%= flash[:error] %></div>
+    <% end %>
+  </div>
 
 <%= yield %>
 

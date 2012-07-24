@@ -7,6 +7,10 @@ class LinksController < ApplicationController
 
   def edit
     @link = Link.find(params[:id])
+    if @link.user_id != current_user.id
+      flash[:error] = "Wrong user!"
+      redirect_to root_path
+    end
   end
 
   def create
