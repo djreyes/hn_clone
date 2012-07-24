@@ -1,5 +1,9 @@
 HnClone::Application.routes.draw do
 
+  get "votes/edit"
+
+  get "votes/create"
+
   devise_for :users
 
   root :to => 'links#index'
