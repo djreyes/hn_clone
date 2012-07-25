@@ -2,8 +2,8 @@ class LinksController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
 
   def show
-    @link = Link.find(params[:id])
-    @comments = @link.comments
+    @parent = Link.find(params[:id])
+    @comments = @parent.comments
     @comment = Comment.new
   end
 

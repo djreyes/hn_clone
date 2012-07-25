@@ -1,2 +1,28 @@
-<h1>Comments#show</h1>
-<p>Find me in app/views/comments/show.html.erb</p>
+<h1>Comment number <%="#{@parent.id}" %></h1>
+<h2><%="#{@parent.content}" %></h2>
+
+<h2>Comments</h2>
+<table class = "table">
+  <thead>
+    <tr>
+      <th>Comment</th>
+      <th>Created at</th>
+      <th>Created by</th>
+      <th>Subcomments</th>
+    </tr>
+  </thead>
+  <tbody>
+<% @parent.comments.each do |parent| %>
+  <tr>
+    <td><%= parent.content%></td>
+    <td><%= parent.created_at%></td>
+    <td><%= parent.user_id %></td>
+    <td><%= link_to "subcomments", parent %></td>
+  </tr>
+  </tbody>
+<%end%>
+</table>
+
+
+
+<%= render "shared/comment_form" %>

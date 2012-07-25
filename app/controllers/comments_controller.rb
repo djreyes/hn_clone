@@ -3,14 +3,15 @@ class CommentsController < ApplicationController
   end
 
   def show
+    @parent = Comment.find(params[:id])
+    @comment = Comment.new
   end
 
   def update
   end
 
   def create
-    @link = Link.find(params[:comment][:commentable_id])
-    comment = @link.comments.new(params[:comment])
+    comment = Comment.new(params[:comment])
     comment.user_id = current_user.id
     comment.save
 
