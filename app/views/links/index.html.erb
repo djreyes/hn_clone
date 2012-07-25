@@ -8,6 +8,7 @@
     <th>URL</th>
     <th>Author</th>
     <th>Action</th>
+    <th>Comments</th>
   </tr>
 </thead>
 
@@ -22,6 +23,7 @@
     <td><%= link_to link.url, link.url %></a></td>
     <td>Author: <%= link.user_id %></td>
     <td><div class="btn"><%= link_to "edit", edit_link_path(link) %></div></td>
+    <td><%= link_to "Comments", link %></td>
   </tr>
 </tbody>
 <%end%>
