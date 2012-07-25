@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
 
   has_many :links
 
+  has_many :comments, :as => :commentable
+
 
   # active record reputations system
   has_many :evaluations, class_name: "RSEvaluation", as: :source

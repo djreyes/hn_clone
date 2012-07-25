@@ -1,2 +1,40 @@
-<h1>Links#show</h1>
-<p>Find me in app/views/links/show.html.erb</p>
+<div>
+<h1><%= @link.title%></h1>
+<h2><%= link_to "#{@link.url}", @link.url%></h2>
+by:<%= @link.user_id%>
+</div>
+
+<h2>Comments</h2>
+<table class = "table">
+  <thead>
+    <tr>
+      <th>Comment</th>
+      <th>Created at</th>
+      <th>Created by</th>
+    </tr>
+  </thead>
+  <tbody>
+<% @comments.each do |comment| %>
+  <tr>
+    <td><%= comment.content%></td>
+    <td><%= comment.created_at%></td>
+    <td><%= comment.user_id %></td>
+  </tr>
+  </tbody>
+<%end%>
+</table>
+
+
+
+<h2>Create new comment</h2>
+
+<%= form_for(@comment) do |comment|%>
+
+  <%= comment.label :content, "Enter comment below"%>
+  <%= comment.text_field :content%>
+  <%= comment.hidden_field :commentable_id, :value => @link.id %>
+
+  <br>
+  <%= comment.submit "Submit comment" %>
+
+<% end%>
