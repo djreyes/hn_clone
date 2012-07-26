@@ -8,6 +8,7 @@ by:<%= @parent.user_id%>
 <table class = "table">
   <thead>
     <tr>
+      <th>Vote</th>
       <th>Comment</th>
       <th>Created at</th>
       <th>Created by</th>
@@ -17,6 +18,10 @@ by:<%= @parent.user_id%>
   <tbody>
 <% @comments.each do |comment| %>
   <tr>
+    <td>
+       <%= pluralize comment.reputation_value_for(:votes).to_i, "vote" %>
+    <%= link_to "up", votes_path(:id => comment.id, :class => Comment, type: "up"), method: "post" %>
+      | <%= link_to "down", votes_path(:id => comment.id, :class => Comment, type: "down"), method: "post" %></td>
     <td><%= comment.content%></td>
     <td><%= comment.created_at%></td>
     <td><%= comment.user_id %></td>

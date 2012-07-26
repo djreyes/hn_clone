@@ -5,6 +5,7 @@
 <table class = "table">
   <thead>
     <tr>
+      <th>Vote</th>
       <th>Comment</th>
       <th>Created at</th>
       <th>Created by</th>
@@ -14,6 +15,10 @@
   <tbody>
 <% @parent.comments.each do |parent| %>
   <tr>
+    <td>
+       <%= pluralize parent.reputation_value_for(:votes).to_i, "vote" %>
+    <%= link_to "up", votes_path(:id => parent.id, :class => Comment, type: "up"), method: "post" %>
+      | <%= link_to "down", votes_path(:id => parent.id, :class => Comment, type: "down"), method: "post" %></td>
     <td><%= parent.content%></td>
     <td><%= parent.created_at%></td>
     <td><%= parent.user_id %></td>
