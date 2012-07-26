@@ -7,6 +7,8 @@ HnClone::Application.routes.draw do
 
   resources :votes
 
+  resources :devise
+
   devise_for :users
 
   resources :links do
