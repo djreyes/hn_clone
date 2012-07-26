@@ -36,8 +36,8 @@ class LinksController < ApplicationController
   end
 
   def index
-    @links_sorted_by_vote = Link.find_with_reputation(:votes, :all, order: 'votes desc')
-    @links = Kaminari.paginate_array(@links_sorted_by_vote).page(params[:page]).per(20)
+    links_sorted_by_vote = Link.find_with_reputation(:votes, :all, order: 'votes desc')
+    @links = Kaminari.paginate_array(links_sorted_by_vote).page(params[:page]).per(20)
   end
 
   def new
