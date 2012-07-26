@@ -11,7 +11,7 @@
 
         <ul class="nav pull-right">
           <% if user_signed_in? %>
-            <li class="active"><%= link_to "#{current_user.email} (#{current_user.reputation_value_for(:karma)})", edit_user_password_path(current_user) %></li>
+            <li class="active"><%= link_to "#{current_user.email} (#{current_user.reputation_value_for(:karma)})", edit_user_registration_path %></li>
             <li class="active"><%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
             </li>
           <% else %>
@@ -21,6 +21,7 @@
             <li class="active">
             <%= link_to "Sign in", new_user_session_path %>
             </li>
+
           <% end %>
         </ul>
 
