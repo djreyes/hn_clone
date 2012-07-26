@@ -5,6 +5,7 @@ class LinksController < ApplicationController
     @parent = Link.find(params[:id])
     @comments = @parent.comments
     @comment = Comment.new
+    @link_comments = Comment.where("commentable_type = 'Link' AND commentable_id = #{@parent.id}").find_with_reputation(:votes, :all, order: 'votes desc, created_at desc')
   end
 
   def edit

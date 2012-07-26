@@ -17,7 +17,7 @@ by:<%= @parent.user_id%>
     </tr>
   </thead>
   <tbody>
-<% @comments.each do |comment| %>
+<% @link_comments.each do |comment| %>
   <tr>
     <td>
        <%= pluralize comment.reputation_value_for(:votes).to_i, "vote" %>
@@ -29,7 +29,7 @@ by:<%= @parent.user_id%>
     <td><%= link_to "subcomments", comment%></td>
   </tr>
 
-  <% comment.comments.each do |comment| %>
+  <% Comment.where("commentable_type = 'Comment' AND commentable_id = #{comment.id}").find_with_reputation(:votes, :all, order: 'votes desc, created_at desc').each do |comment| %>
    <tr>
 
       <td>
@@ -39,25 +39,11 @@ by:<%= @parent.user_id%>
       <td>&nbsp;&nbsp;&nbsp;&nbsp;&#8594;<%= comment.content%></td>
       <td><%= comment.created_at%></td>
       <td><%= comment.user_id %></td>
-      <td><%= link_to "subcomments", comment%></td>
+      <td></td>
 
    </tr>
 
 
-    <% comment.comments.each do |comment| %>
-     <tr>
-
-        <td>
-           <%= pluralize comment.reputation_value_for(:votes).to_i, "vote" %>
-        <%= link_to "up", votes_path(:id => comment.id, :class => Comment, type: "up"), method: "post" %>
-          | <%= link_to "down", votes_path(:id => comment.id, :class => Comment, type: "down"), method: "post" %></td>
-        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#8594;<%= comment.content%></td>
-        <td><%= comment.created_at%></td>
-        <td><%= comment.user_id %></td>
-        <td><%= link_to "subcomments", comment%></td>
-
-     </tr>
-    <%end%>
 
   <%end%>
 
