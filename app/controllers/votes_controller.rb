@@ -13,7 +13,14 @@ class VotesController < ApplicationController
         flash[:error] = "You can't vote on your own links!"
         redirect_to root_path
       else
+        warn "****************************************"
+        warn value.inspect
+        warn current_user.inspect
+        warn @comment.reputation_value_for(:votes).inspect
+        warn "****************************************"
         @comment.add_or_update_evaluation(:votes, value, current_user)
+        warn @comment.reputation_value_for(:votes).inspect
+        warn "****************************************"
         redirect_to :back, notice: "Thank you for voting"
       end
     else

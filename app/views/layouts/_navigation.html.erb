@@ -11,7 +11,7 @@
 
         <ul class="nav pull-right">
           <% if user_signed_in? %>
-            <li class="active"><a href="#"><%= current_user.email %></a></li>
+            <li class="active"><a href="#"><%= "#{current_user.email} (#{current_user.reputation_value_for(:karma)})"%></a></li>
             <li class="active">  <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
             </li>
           <% else %>
