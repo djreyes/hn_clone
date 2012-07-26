@@ -19,6 +19,9 @@
   <!-- <p class="alert"><%= alert %></p> -->
 
   <div id ="error_explanation">
+    <% if flash[:success] %>
+      <div class="alert alert-success"><%= flash[:success] %></div>
+    <% end %>
     <% if flash[:message] %>
       <div class="alert alert-success"><%= flash[:message] %></div>
     <% end %>

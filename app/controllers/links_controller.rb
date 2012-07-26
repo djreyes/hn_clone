@@ -27,7 +27,11 @@ class LinksController < ApplicationController
     @link = Link.find(params[:id])
     @link.title = params[:link][:title]
     @link.url = params[:link][:url]
-    @link.save
+    if @link.save
+      flash[:success] = "Link updated!"
+    else
+      flash[:error] = @link.errors.messages[:error].first
+    end
     redirect_to root_path
   end
 
