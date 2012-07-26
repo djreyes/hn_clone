@@ -1,5 +1,7 @@
 HnClone::Application.routes.draw do
 
+
+
   root :to => 'links#index'
 
   resources :comments do
@@ -15,5 +17,7 @@ HnClone::Application.routes.draw do
   resources :links do
     resources :comments
   end
+
+  resources :users
 
 end

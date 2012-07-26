@@ -14,7 +14,6 @@ class User < ActiveRecord::Base
 
   has_many :comments, :as => :commentable
 
-
   # active record reputations system
   # has_many :evaluations, class_name: "RSEvaluation", as: :source
 
@@ -28,44 +27,20 @@ class User < ActiveRecord::Base
 
   has_reputation :karma, source: [{reputation: :votes, of: :links}, {reputation: :votes, of: :comments}], aggregated_by: :sum
 
-  # has_reputation :karma,
-  #       source: [
-  #           { reputation: :link_votes },
-  #           { reputation: :comment_votes}],
-  #       aggregated_by: :sum
+  def ban_status(params)
+    if params[:banned] == "banned"
+      self.banned = true
+    elsif params[:banned] == "unbanned"
+      self.banned = false
+    end
+  end
 
-        # has_reputation :votes, source: :user, aggregated_by: :sum
+  def admin_status(params)
+    if params[:admin] == "admin"
+      self.admin = true
+    elsif params[:admin] == "de-admin"
+      self.admin = false
+    end
+  end
 
-
-
-
-        # has_reputation :karma,
-        #       :source => [
-        #           { :reputation => :link_votes },
-        #           { :reputation => :comment_votes }],
-        #       :aggregated_by => :sum
-        #
-        #   has_reputation :link_votes,
-        #       :source => { :reputation => :votes, :of => :links },
-        #       :aggregated_by => :sum
-        #
-        #   has_reputation :comment_votes,
-        #       :source => { :reputation => :votes, :of => :comments },
-        #       :aggregated_by => :sum
-
-
-
-        # has_evaluation :karma,
-        #       :source => [
-        #           { :evaluation => :link_votes },
-        #           { :evaluation => :comment_votes }],
-        #       :aggregated_by => :sum
-        #
-        #   has_evaluation :link_votes,
-        #       :source => { :evaluation => :votes, :of => :links },
-        #       :aggregated_by => :sum
-        #
-        #   has_evaluation :comment_votes,
-        #       :source => { :evaluation => :votes, :of => :comments },
-        #       :aggregated_by => :sum
 end

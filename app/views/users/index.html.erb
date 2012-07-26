@@ -1,0 +1,32 @@
+<h1>ALL the users!</h1>
+
+
+<table class="table">
+<thead>
+  <tr>
+    <th>User Email</th>
+    <th>Karma</th>
+    <th>(UN)BANHAMMER</th>
+    <th>ADMIN-ify</th>
+  </tr>
+</thead>
+
+<% @users.each do |user|%>
+<tbody>
+  <tr>
+    <td><%= user.email %></td>
+    <td><%= user.reputation_value_for(:karma) %></td>
+    <% if user.banned? %>
+      <td><div class="btn"><%= link_to "UNBAN!!!!!", user_path(:id => user.id, banned: "unbanned"), method: "put" %></div></td>
+    <% else %>
+      <td><div class="btn"><%= link_to "BAN!!!!!", user_path(:id => user.id, banned: "banned"), method: "put" %></div></td>
+    <% end %>
+    <% if user.admin? %>
+      <td><div class="btn"><%= link_to "de-admin", user_path(:id => user.id, admin: "de-admin"), method: "put" %></div></td>
+    <% else %>
+      <td><div class="btn"><%= link_to "admin", user_path(:id => user.id, admin: "admin"), method: "put" %></div></td>
+    <% end %>
+  </tr>
+</tbody>
+<%end%>
+</table>
