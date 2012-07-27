@@ -4,15 +4,10 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_banned, :except => :index
 
   def authenticate_admin
-    unless current_user.admin?
-      redirect_to root_path
-    end
+    redirect_to root_path unless current_user.admin?
   end
 
   def authenticate_banned
-    if current_user.nil?
-    elsif current_user.banned?
-      redirect_to root_path
-    end
+    redirect_to root_path if current_user.banned? unless current_user.nil?
   end
 end
