@@ -1,13 +1,16 @@
 <h2>Create new comment</h2>
 
+<center>
 <%= form_for(@comment) do |comment|%>
 
-  <%= comment.label :content, "Enter comment below"%>
   <%= comment.text_field :content%>
   <%= comment.hidden_field :commentable_id, :value => @parent.id %>
   <%= comment.hidden_field :commentable_type, :value => @parent.class %>
 
   <br>
-  <%= comment.submit "Submit comment" %>
+  <%= comment.submit "Submit" %>
 
 <% end%>
+
+<center><%= button_to "back", :back, :class => "btn btn-inverse btn-xtra-large", :method => "get"%></center>
+</center>

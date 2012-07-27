@@ -1,7 +1,7 @@
-<div>
+<div class="hero-unit">
 <h1><%= @parent.title%></h1>
 <h2><%= link_to "#{@parent.url}", @parent.url%></h2>
-by:<%= @parent.user_id%>
+<h3 class="pull-right">submitted by <%= @parent.user.name || @parent.user.email %></h3>
 </div>
 
 <h2>Comments</h2>
@@ -25,7 +25,7 @@ by:<%= @parent.user_id%>
       | <%= link_to "down", votes_path(:id => comment.id, :class => Comment, type: "down"), method: "post" %></td>
     <td><%= comment.content%></td>
     <td><%= comment.created_at%></td>
-    <td><%= comment.user_id %></td>
+    <td><%= comment.user.name || comment.user.email %></td>
     <td><%= link_to "subcomments", comment%></td>
   </tr>
 
@@ -38,7 +38,7 @@ by:<%= @parent.user_id%>
         | <%= link_to "down", votes_path(:id => comment.id, :class => Comment, type: "down"), method: "post" %></td>
       <td>&nbsp;&nbsp;&nbsp;&nbsp;&#8594;<%= comment.content%></td>
       <td><%= comment.created_at%></td>
-      <td><%= comment.user_id %></td>
+      <td><%= comment.user.name || comment.user.email %></td>
       <td></td>
 
    </tr>
