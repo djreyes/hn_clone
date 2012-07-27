@@ -9,6 +9,7 @@
     <th>Author</th>
     <th>Action</th>
     <th>Comments</th>
+    <%if user_signed_in? && current_user.admin?%><th>FLAG!!</th><%end%>
   </tr>
 </thead>
 
@@ -26,6 +27,7 @@
       <div class="btn"><%= link_to "edit", edit_link_path(link) %></div></td>
         <% end %>
     <td><%= link_to "Comments", link %></td>
+    <%if user_signed_in? && current_user.admin?%><td><%= link_to "make invisible", link_path(:link => link, :id => link.id, type: "flag"), method: "put" %> <%= "Is link invisible? #{link.invisible}" %></td><%end%>
   </tr>
 </tbody>
 <%end%>

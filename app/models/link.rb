@@ -15,4 +15,17 @@ class Link < ActiveRecord::Base
       errors.add(:error, "Can't edit past 15 minutes")
     end unless self.created_at.nil?
   end
+
+  def toggle_invisibility
+    if self.invisible.nil?
+      self.invisible = true
+    else
+      self.invisible = !self.invisible
+    end
+  end
+
+  def update_title_and_url(params)
+    self.title = params[:link][:title]
+    self.url = params[:link][:url]
+  end
 end

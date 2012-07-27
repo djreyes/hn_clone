@@ -26,8 +26,8 @@ class LinksController < ApplicationController
 
   def update
     @link = Link.find(params[:id])
-    @link.title = params[:link][:title]
-    @link.url = params[:link][:url]
+    @link.update_title_and_url(params) if params[:type] != "flag"
+    @link.toggle_invisibility if params[:type] == "flag"
     if @link.save
       flash[:success] = "Link updated!"
     else
@@ -38,6 +38,7 @@ class LinksController < ApplicationController
 
   def index
     links_sorted_by_vote = Link.find_with_reputation(:votes, :all, order: 'votes desc')
+    links_sorted_by_vote.select! { |x| x.invisible != true } if !current_user.admin?
     @links = Kaminari.paginate_array(links_sorted_by_vote).page(params[:page]).per(20)
   end
 
