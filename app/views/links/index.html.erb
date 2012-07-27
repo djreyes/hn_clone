@@ -22,7 +22,7 @@
       | <%= link_to "down", votes_path(:id => link.id, type: "down"), method: "post" %></td>
     <td><%= link_to link.title, link.url %></td>
     <td><%= link_to link.url, link.url %></a></td>
-    <td>Author: <%= link.user_id %></td>
+    <td><%= link.user.name || link.user.email %></td>
     <td><% if user_signed_in? && current_user.id == link.user_id %>
       <%= button_to "edit", edit_link_path(link), :method=> "get", :class => "btn btn-primary"%>
         <% end %> </td>
