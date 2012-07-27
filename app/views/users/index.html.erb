@@ -17,14 +17,14 @@
     <td><%= user.email %></td>
     <td><%= user.reputation_value_for(:karma) %></td>
     <% if user.banned? %>
-      <td><div class="btn"><%= link_to "UNBAN!!!!!", user_path(:id => user.id, banned: "unbanned"), method: "put" %></div></td>
+      <td><%= button_to "UNBAN!!!!!", user_path(:id => user.id, banned: "unbanned"), method: "put", class: "btn btn-primary" %></td>
     <% else %>
-      <td><div class="btn"><%= link_to "BAN!!!!!", user_path(:id => user.id, banned: "banned"), method: "put" %></div></td>
+      <td><%= button_to "BAN!!!!!", user_path(:id => user.id, banned: "banned"), method: "put", class: "btn btn-danger" %></td>
     <% end %>
     <% if user.admin? %>
-      <td><div class="btn"><%= link_to "de-admin", user_path(:id => user.id, admin: "de-admin"), method: "put" %></div></td>
+      <td><%= button_to "de-admin", user_path(:id => user.id, admin: "de-admin"), method: "put", class: "btn btn-danger" %></td>
     <% else %>
-      <td><div class="btn"><%= link_to "admin", user_path(:id => user.id, admin: "admin"), method: "put" %></div></td>
+      <td><%= button_to "admin", user_path(:id => user.id, admin: "admin"), method: "put", class: "btn btn-success" %></td>
     <% end %>
   </tr>
 </tbody>

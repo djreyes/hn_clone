@@ -38,7 +38,7 @@ class LinksController < ApplicationController
 
   def index
     links_sorted_by_vote = Link.find_with_reputation(:votes, :all, order: 'votes desc')
-    links_sorted_by_vote.select! { |x| x.invisible != true } if !current_user.admin?
+    links_sorted_by_vote.select! { |x| x.invisible != true } if current_user == nil || !current_user.admin?
     @links = Kaminari.paginate_array(links_sorted_by_vote).page(params[:page]).per(20)
   end
 

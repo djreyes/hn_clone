@@ -21,7 +21,7 @@ textarea {
 }
 
 .center h1 {
-  margin-bottom: 10px;
+  marginrgin-bottom: 10px;
 }
 
 .content {
@@ -71,6 +71,7 @@ p {
   line-height: 1.7em;
 }
 
+
 /* header */
 
 #logo {
@@ -88,4 +89,16 @@ p {
 #logo:hover {
   color: #fff;
   text-decoration: none;
+}
+
+
+.btn-xtra-large {
+  padding: 36px 56px;
+  font-size: 50px;
+  line-height: normal;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  font-weight:bold;
+
 }

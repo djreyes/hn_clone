@@ -1,4 +1,4 @@
-<div class="hero-unit"><h1>Hacker News 2.0.1</h1></div>
+<div class="hero-unit"><center><%= button_to "YOU MUST SUBMIT A LINK", new_link_path, method: "get", class: "btn btn-xtra-large btn-inverse" %></center></div>
 
 <table class="table">
 <thead>
@@ -24,11 +24,17 @@
     <td><%= link_to link.url, link.url %></a></td>
     <td>Author: <%= link.user_id %></td>
     <td><% if user_signed_in? && current_user.id == link.user_id %>
-      <div class="btn"><%= link_to "edit", edit_link_path(link) %></div></td>
-        <% end %>
+      <%= button_to "edit", edit_link_path(link), :method=> "get", :class => "btn btn-primary"%>
+        <% end %> </td>
     <td><%= link_to "Comments", link %></td>
-    <%if user_signed_in? && current_user.admin?%><td><%= link_to "make invisible", link_path(:link => link, :id => link.id, type: "flag"), method: "put" %> <%= "Is link invisible? #{link.invisible}" %></td><%end%>
+    <%if user_signed_in? && current_user.admin?%>
+      <td><% if link.invisible %>
+        <%= button_to "make visible", link_path(:link => link, :id => link.id, type: "flag"), method: "put", :class => "btn btn-primary"%>
+      <%else %>
+        <%= button_to "make invisible", link_path(:link => link, :id => link.id, type: "flag"), method: "put", :class => "btn btn-danger"%>
+      <% end %></td><%end%>
   </tr>
+
 </tbody>
 <%end%>
 </table>
