@@ -3,6 +3,7 @@
 <table class="table">
 <thead>
   <tr>
+    <th>Vote Count</th>
     <th>Vote</th>
     <th>Title</th>
     <th>URL</th>
@@ -18,8 +19,29 @@
   <tr>
     <td>
        <%= pluralize link.reputation_value_for(:votes).to_i, "vote" %>
-    <%= link_to "up", votes_path(:id => link.id, type: "up"), method: "post" %>
-      | <%= link_to "down", votes_path(:id => link.id, type: "down"), method: "post" %></td>
+
+       </td>
+       <td>
+
+       <% if current_user.nil? %>
+       You must log in to vote
+       <% else %>
+
+      <% evaluation = RSEvaluation.find(:all, :conditions => {:source_id => current_user.id, :target_type => link.class, :target_id => link.id})%>
+      <% if evaluation.empty? %>
+          <% if current_user.id != link.user_id %>
+          <%= button_to "UP", votes_path(:id => link.id, type: "up"), method: "post", class: "btn btn-success" %>
+            <%= button_to "DOWN", votes_path(:id => link.id, type: "down"), method: "post", class: "btn btn-danger" %>
+            <% end %>
+      <% elsif evaluation.first.value == 1.0 %>
+        <%= button_to "DOWN", votes_path(:id => link.id, type: "down"), method: "post", class: "btn btn-danger" %>
+      <% elsif evaluation.first.value == -1.0 %>
+        <%= button_to "UP", votes_path(:id => link.id, type: "up"), method: "post", class: "btn btn-success" %>
+      <% end %>
+
+      <% end %>  </td>
+
+
     <td><%= link_to link.title, link.url %></td>
     <td><%= link_to link.url, link.url %></a></td>
     <td><%= link.user.name || link.user.email %></td>
